@@ -10,7 +10,7 @@ btSerial.connect(TARGET_ADDRESS, TARGET_CHANNEL, function() {
         if (err) console.error(err);
     });
     btSerial.on('data', function(data) {
-        console.log(data.toString('utf-8'));
+        console.log("Response from server: " + data.toString('utf-8'));
     });
 }, function (err) {
     if (err) console.error(err);

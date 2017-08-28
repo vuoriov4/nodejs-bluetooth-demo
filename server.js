@@ -6,10 +6,10 @@ server.listen(function (clientAddress) {
     console.log('Client ' + clientAddress + ' connected.');
     server.on('data', function(buffer) {
         console.log('Received message: "' + buffer + '"');
-        server.write(new Buffer('Thanks for the message!'), function(error) {
-            if (err) console.error(error)
+        server.write(new Buffer('Thanks for the message!'), function(err) {
+            if (err) console.error(err)
         });
     });
-}, function(error){
-	if (err) console.error(error);
+}, function(err){
+	if (err) console.error(err);
 }, {uuid: TARGET_UUID, channel: TARGET_CHANNEL} );
