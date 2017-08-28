@@ -7,11 +7,11 @@ process.stdin.setEncoding('utf8');
 btSerial.connect(TARGET_ADDRESS, TARGET_CHANNEL, function() {
     console.log("Connected!");
     btSerial.write(new Buffer("Hello world!", 'utf-8'), function(err, count) {
-        console.error(err);
+        if (err) console.error(err);
     });
     btSerial.on('data', function(data) {
         console.log(data.toString('utf-8'));
     });
 }, function (err) {
-    console.error(err);
+    if (err) console.error(err);
 });

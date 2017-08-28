@@ -7,9 +7,9 @@ server.listen(function (clientAddress) {
     server.on('data', function(buffer) {
         console.log('Received message: "' + buffer + '"');
         server.write(new Buffer('Thanks for the message!'), function(error) {
-            console.error(error)
+            if (err) console.error(error)
         });
     });
 }, function(error){
-	console.error(error);
+	if (err) console.error(error);
 }, {uuid: TARGET_UUID, channel: TARGET_CHANNEL} );
