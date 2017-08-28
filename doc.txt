@@ -1,0 +1,46 @@
+<h1>How to communicate across Linux devices with Bluetooth and NodeJS</h1>
+
+<p>
+	Some background: I have a project that's using a Raspberry Pi to control a circuit.
+	I want to communicate with it remotely through my laptop.
+	I couldn't find a good example on how to do it with NodeJS, so I decided to write this.
+</p>
+<p>
+	The aim of this tutorial is to create two things.
+	1. A NodeJS program that broadcasts bluetooth data from a client (my laptop) to a target device (Raspberry PI).
+	2. Another NodeJS program inside the target device that listens for bluetooth data (and reacts to it).
+	I'll try to keep things as simple as possible.
+</p>
+
+
+<h2>Okay, let's get started!</h2>
+
+<p>
+	The first thing to do is to make sure both your client- and target device have bluetooth up and running.
+	After running <code class="code-inline">sudo service bluetooth status</code>
+	you should see something like "Status: Running". If not... you should try to turn on bluetooth.
+	Assuming it's running you can find the bluetooth address by running <code class="code-inline">hcitool dev</code>.
+	It should look something like <code class="code-inline">00:C2:C6:7C:60:31</code>.
+	You should write the address down for both devices, we'll need them later.
+</p>
+<p>
+	Let's install <a href="https://github.com/eelcocramer/node-bluetooth-serial-port">node-bluetooth-serial-port</a>.
+	It's a NodeJS wrapper for bluetooth.
+	<code class="code-inline">sudo apt-get install build-essential libbluetooth-dev</code>
+	<code class="code-inline">sudo npm install node-bluetooth-serial-port</code>
+</p>
+<h1>The server</h1>
+<p>
+	If you are getting an error along the lines of "Can't connect to SDP Daemon" you should try running your bluetooth service in compatibility mode.
+	Do <code class="code-inline">sudo nano /etc/systemd/system/dbus-org.bluez.service</code> and change the line
+	<code class="code-inline">ExecStart=/usr/lib/bluetooth/bluetoothd</code>
+	to <code class="code-inline">ExecStart=/usr/lib/bluetooth/bluetoothd --compat</code>.
+	Then restart bluetooth like this
+	<code class="code-inline">sudo systemctl daemon-reload && sudo systemctl restart bluetooth</code>.
+</p>
+<code class="code-inline"></code>
+</p>
+<h1>The client</h1>
+<p>
+
+</p>
